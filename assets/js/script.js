@@ -1,7 +1,12 @@
 const buttonStart = document.querySelector('.button');
 const questPage = document.querySelector('.quiz-quest');
 const timer = document.querySelector('.timer');
+const displayScore = document.querySelector('.score');
+const highScore = document.querySelector('.high-score');
+let displayResults = document.querySelector('.quiz-results');
 let globalIndex = 0;
+let score = 0;
+let time = 90;
 // Begin of questions list
 const questions = [
     { 
@@ -56,19 +61,35 @@ const questions = [
     },
 ]
 
+
+function displayScoreTimer(){
+    timer.textContent = time;
+    displayScore.textContent = score;
+}
+
+
+
 // Start of starter Function 
 buttonStart.addEventListener('click', ()=>{
+    displayScoreTimer();
     const startPage = document.querySelector('.starter-page')
     // hide starter page 
     startPage.style.display = 'none';
     // display questions page
     questPage.style.display = 'block';
     // set timer
-    
+    let timeInterval = setInterval(function(){
+        timer.innerHTML = time;
+        time--;
+        if (time === 0){
+          clearInterval(timeInterval);
+        }
+      }, 1000);
     displayQuest();
 })
 
 function displayQuest(){
+    questPage.innerHTML = '';
     let titleQuest = document.createElement('h2');
     titleQuest.classList.add('title-h2')
     // adding question to h2 element //
@@ -85,8 +106,21 @@ function displayQuest(){
         answerButton.addEventListener('click', checkAnswer);
     }
     questPage.appendChild(optionsQuest);
+    console.log(questions[globalIndex].answer)
 }
 
-function checkAnswer(){
-
+    // traditionally put e as an evvent
+function checkAnswer(event){
+    if(event.target === questions[globalIndex].answer){
+        displayResults.textContent = 'Correct!';
+        // add to score
+    } else {
+        displayResults.textContent = 'Incorrect';
+        //subtract time
+    }
+    globalIndex++;
+    displayQuest();
 }
+
+// when the result of the last question answered return score and highscore 
+// timer should display zero

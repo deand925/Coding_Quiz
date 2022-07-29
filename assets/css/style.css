@@ -18,7 +18,11 @@ section {
     height: 20%;
 }
 
-.high-score, .timer {
+.high-score {
+    display: none;
+}
+
+.high-score, .timer, .score {
     height: 120px;
     width: 120px;
     border: 5px solid;
@@ -84,4 +88,14 @@ p {
     color: white;
     font-size: 25px;
     margin: 10px auto;
+}
+
+.quiz-results {
+    width: 400px;
+    height: 60px;
+    color: blue;
+    font-size: 25px;
+    margin: 10px auto;
+    font-weight: bold;
+    text-align: center;
 }
