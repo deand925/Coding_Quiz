@@ -4,6 +4,7 @@ const timer = document.querySelector('.timer');
 const displayScore = document.querySelector('.score');
 const displayHighScore = document.querySelector('.high-score');
 const resultsPage = document.querySelector('.quiz-results');
+let timeInterval;
 let globalIndex = 0;
 let score = 0;
 let time = 90;
@@ -72,11 +73,10 @@ buttonStart.addEventListener('click', () => {
     // display questions page
     questPage.style.display = 'block';
     // set timer
-    let timeInterval =
-        setInterval(function () {
+    timeInterval = setInterval(function () {
             timer.innerHTML = time;
             if (time === 0) {
-                clearInterval(timeInterval);
+                
             }
             time--;
         }, 1000);
@@ -114,23 +114,30 @@ function checkAnswer(event) {
     } else {
         resultsPage.textContent = 'Incorrect';
         //subtract time
+        
     }
 
-    if (questions[globalIndex].answer.length === 10 || time === 0) {
-        resultsPage.style.display = 'block';
-        checkHighScore();
-    } else {
+    setTimeout(()=>{
+        resultsPage.textContent = '';
         globalIndex++;
-        displayQuest();
-    }
+        if (globalIndex === 10 || time === 0) {
+            displayHighScore.style.display = 'block';
+            clearInterval(timeInterval);
+    
+            checkHighScore();
+        } else {
+            displayQuest();
+        }
+    }, 1000)
+    
 }
 
 function checkHighScore() {
-    let highScore = Number(localStorage.getItem('highScore'));
-    if(score<highScore){
-        highScore = score;
-        localStorage.setItem("high score", highScore.toString());
-        displayHighScore.innerHTML = highScore;
+    let highScore = Number(localStorage.getItem('high-score'));
+    let pastInitals = localStorage.getItem('initials');
+    if(score>highScore){
+
     }
+    displayHighScore.textContent = pastInitals + "-" + highScore;
 }
 // when the result of the last question answered return score and highscore 

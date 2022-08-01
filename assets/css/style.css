@@ -18,10 +18,6 @@ section {
     height: 20%;
 }
 
-.high-score {
-    display: none;
-}
-
 .high-score, .timer, .score {
     height: 120px;
     width: 120px;
@@ -33,6 +29,12 @@ section {
     font-size: 60px;
     padding: 20px 0px 0px 25px;
 }
+
+.high-score {
+    display: none;
+    width: 240px;
+}
+
 
 .starter-page {
     display: flex;
