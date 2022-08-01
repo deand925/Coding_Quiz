@@ -114,7 +114,7 @@ function checkAnswer(event) {
     } else {
         resultsPage.textContent = 'Incorrect';
         //subtract time
-        
+        time -= 5;
     }
 
     setTimeout(()=>{
@@ -136,7 +136,7 @@ function checkHighScore() {
     let highScore = Number(localStorage.getItem('high-score'));
     let pastInitals = localStorage.getItem('initials');
     if(score>highScore){
-
+        
     }
     displayHighScore.textContent = pastInitals + "-" + highScore;
 }
