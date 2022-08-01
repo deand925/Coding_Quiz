@@ -123,7 +123,7 @@ function checkAnswer(event) {
         if (globalIndex === 10 || time === 0) {
             displayHighScore.style.display = 'block';
             clearInterval(timeInterval);
-    
+            questPage.style.display = 'none';
             checkHighScore();
         } else {
             displayQuest();
@@ -136,7 +136,11 @@ function checkHighScore() {
     let highScore = Number(localStorage.getItem('high-score'));
     let pastInitals = localStorage.getItem('initials');
     if(score>highScore){
-        
+        highScore = score;
+        let initials = prompt('Congratulation, you achieved the new high score!!! Please enter your initails to let everyone know what you achieved.')
+        pastInitals = initials;
+        localStorage.setItem("initials", initials);
+        localStorage.setItem("high-score", highScore);
     }
     displayHighScore.textContent = pastInitals + "-" + highScore;
 }
