@@ -2,8 +2,8 @@ const buttonStart = document.querySelector('.button');
 const questPage = document.querySelector('.quiz-quest');
 const timer = document.querySelector('.timer');
 const displayScore = document.querySelector('.score');
-const highScore = document.querySelector('.high-score');
-let displayResults = document.querySelector('.quiz-results');
+const displayHighScore = document.querySelector('.high-score');
+const resultsPage = document.querySelector('.quiz-results');
 let globalIndex = 0;
 let score = 0;
 let time = 90;
@@ -107,22 +107,30 @@ function displayQuest() {
 // traditionally put e as an evvent
 function checkAnswer(event) {
     if (event.target.textContent === questions[globalIndex].answer) {
-        displayResults.textContent = 'Correct!';
+        resultsPage.textContent = 'Correct!';
         // add to score
         score = score + 1;
         displayScore.textContent = score;
     } else {
-        displayResults.textContent = 'Incorrect';
+        resultsPage.textContent = 'Incorrect';
         //subtract time
     }
-    
+
     if (questions[globalIndex].answer.length === 10 || time === 0) {
-        displayResults.style.display = 'none';
+        resultsPage.style.display = 'block';
+        checkHighScore();
     } else {
         globalIndex++;
+        displayQuest();
     }
-    displayQuest();
 }
 
+function checkHighScore() {
+    let highScore = Number(localStorage.getItem('highScore'));
+    if(score<highScore){
+        highScore = score;
+        localStorage.setItem("high score", highScore.toString());
+        displayHighScore.innerHTML = highScore;
+    }
+}
 // when the result of the last question answered return score and highscore 
-// timer should display zero
