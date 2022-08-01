@@ -76,7 +76,7 @@ buttonStart.addEventListener('click', () => {
     timeInterval = setInterval(function () {
             timer.innerHTML = time;
             if (time === 0) {
-                
+                clearInterval(timeInterval);
             }
             time--;
         }, 1000);
