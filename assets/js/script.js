@@ -117,12 +117,18 @@ function checkAnswer(event) {
         time -= 5;
     }
 
+    // give a 1 second pause showing the results before moving onto the next question
     setTimeout(()=>{
         resultsPage.textContent = '';
+        // increase the index by 1 each time a question is answered
         globalIndex++;
+        // check if all questions have been answered or if time has run out
         if (globalIndex === 10 || time === 0) {
+            // display the high score div
             displayHighScore.style.display = 'block';
+            // stop the time
             clearInterval(timeInterval);
+            // hide the questions page
             questPage.style.display = 'none';
             checkHighScore();
         } else {
@@ -133,15 +139,30 @@ function checkAnswer(event) {
 }
 
 function checkHighScore() {
+    // get high score from local storage
     let highScore = Number(localStorage.getItem('high-score'));
+    // get initials from local storage
     let pastInitals = localStorage.getItem('initials');
+    // check if user score is greater then high score stored in local storage
     if(score>highScore){
         highScore = score;
-        let initials = prompt('Congratulation, you achieved the new high score!!! Please enter your initails to let everyone know what you achieved.')
+        // user is asked to input initials if they have the new high score
+        let initials = prompt('Congratulations, you achieved the new high score!!! Please enter your initails to let everyone know what you achieved.')
+        // users initials are saved 
         pastInitals = initials;
+        // save user initials to local storage
         localStorage.setItem("initials", initials);
+        // save new high score to local storage
         localStorage.setItem("high-score", highScore);
     }
-    displayHighScore.textContent = pastInitals + "-" + highScore;
+
+    // display new high score with user's initials
+    const highScoreTitle = document.createElement('p');
+    highScoreTitle.classList.add('.high-score-title')
+    highScoreTitle.textContent = 'High Score';
+    displayHighScore.appendChild(highScoreTitle);
+    const highScoreNumber = document.createElement('p');
+    highScoreNumber.textContent = pastInitals + " - " + highScore;
+    displayHighScore.appendChild(highScoreNumber);
 }
 // when the result of the last question answered return score and highscore 

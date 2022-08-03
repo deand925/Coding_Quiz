@@ -18,7 +18,7 @@ section {
     height: 20%;
 }
 
-.high-score, .timer, .score {
+.timer, .score {
     height: 120px;
     width: 120px;
     border: 5px solid;
@@ -31,8 +31,15 @@ section {
 }
 
 .high-score {
+    height: 360px;
     display: none;
-    width: 240px;
+    border: 5px solid;
+    margin: 20px;
+    border-radius: 12px;
+    background-color: blue;
+    color: white;
+    font-size: 60px;
+    padding: 20px 0px 0px 25px;
 }
 
 
