@@ -4,6 +4,9 @@ const timer = document.querySelector('.timer');
 const displayScore = document.querySelector('.score');
 const displayHighScore = document.querySelector('.high-score');
 const resultsPage = document.querySelector('.quiz-results');
+const tryAgainEl = document.querySelector('.try-again');
+const tryAgainButton = document.querySelector('.try-again-button');
+const startPage = document.querySelector('.starter-page')
 let timeInterval;
 let globalIndex = 0;
 let score = 0;
@@ -67,19 +70,18 @@ const questions = [
 buttonStart.addEventListener('click', () => {
     timer.textContent = time;
     displayScore.textContent = score;
-    const startPage = document.querySelector('.starter-page')
     // hide starter page 
     startPage.style.display = 'none';
     // display questions page
     questPage.style.display = 'block';
     // set timer
     timeInterval = setInterval(function () {
-            timer.innerHTML = time;
-            if (time === 0) {
-                clearInterval(timeInterval);
-            }
-            time--;
-        }, 1000);
+        timer.innerHTML = time;
+        if (time === 0) {
+            clearInterval(timeInterval);
+        }
+        time--;
+    }, 1000);
     displayQuest();
 })
 
@@ -118,7 +120,7 @@ function checkAnswer(event) {
     }
 
     // give a 1 second pause showing the results before moving onto the next question
-    setTimeout(()=>{
+    setTimeout(() => {
         resultsPage.textContent = '';
         // increase the index by 1 each time a question is answered
         globalIndex++;
@@ -135,7 +137,7 @@ function checkAnswer(event) {
             displayQuest();
         }
     }, 1000)
-    
+
 }
 
 function checkHighScore() {
@@ -144,7 +146,7 @@ function checkHighScore() {
     // get initials from local storage
     let pastInitals = localStorage.getItem('initials');
     // check if user score is greater then high score stored in local storage
-    if(score>highScore){
+    if (score > highScore) {
         highScore = score;
         // user is asked to input initials if they have the new high score
         let initials = prompt('Congratulations, you achieved the new high score!!! Please enter your initails to let everyone know what you achieved.')
@@ -164,5 +166,15 @@ function checkHighScore() {
     const highScoreNumber = document.createElement('p');
     highScoreNumber.textContent = pastInitals + " - " + highScore;
     displayHighScore.appendChild(highScoreNumber);
+    tryAgainEl.style.display = 'block';
 }
-// when the result of the last question answered return score and highscore 
+
+tryAgainButton.addEventListener('click', () => {
+    // hide the high score div
+    displayHighScore.style.display = 'none';
+    // hide try again button
+    tryAgainEl.style.display = 'none';
+    // display starter page 
+    startPage.style.display = 'block';
+})
+
