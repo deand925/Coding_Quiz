@@ -9,6 +9,7 @@ const tryAgainButton = document.querySelector('.try-again-button');
 const startPage = document.querySelector('.starter-page')
 let timeInterval;
 let globalIndex = 0;
+let highScoreIndex = 0;
 let score = 0;
 let time = 90;
 // Begin of questions list
@@ -143,33 +144,51 @@ function checkAnswer(event) {
 
 }
 
+
 function checkHighScore() {
-    // get high score from local storage
-    let highScore = Number(localStorage.getItem('high-score'));
-    // get initials from local storage
-    let pastInitals = localStorage.getItem('initials');
-    // check if user score is greater then high score stored in local storage
-    if (score > highScore) {
-        highScore = score;
-        // user is asked to input initials if they have the new high score
-        let initials = prompt('Congratulations, you achieved the new high score!!! Please enter your initails to let everyone know what you achieved.')
-        // users initials are saved 
-        pastInitals = initials;
-        // save user initials to local storage
-        localStorage.setItem("initials", initials);
-        // save new high score to local storage
-        localStorage.setItem("high-score", highScore);
+     // user is asked to input initials if they have the new high score
+     let initials = prompt('Congratulations, you achieved the new high score!!! Please enter your initails to let everyone know what you achieved.')
+     const highScoreTitle = document.createElement('h2');
+     highScoreTitle.classList.add('.high-score-title');
+     highScoreTitle.textContent = 'High Scores';
+    displayHighScore.appendChild(highScoreTitle);
+    let localScore = JSON.parse(localStorage.getItem('userInfo'));
+    if(localScore){
+        localScore.push({initials, score})
+        localScore.sort((a, b)=>{
+            if(a.score > b.score){
+                return -1;
+            } else if (a.score < b.score){
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+        localStorage.setItem('userInfo', JSON.stringify(localScore));
+        for(let i = 0; i < localScore.length; i++){
+            const highScoreInfo = document.createElement('p');
+            highScoreInfo.classList.add('.high-score-list-el')
+            highScoreInfo.textContent = localScore[i].initials + '-' + localScore[i].score;
+            displayHighScore.appendChild(highScoreInfo);
+        }
+    } else {
+        const scoresArray = [{
+            initials,
+            score
+        }];
+        localStorage.setItem("userInfo", JSON.stringify(scoresArray));
     }
 
+
     // display new high score with user's initials
-    const highScoreTitle = document.createElement('p');
-    highScoreTitle.classList.add('.high-score-title')
-    highScoreTitle.textContent = 'High Score';
-    displayHighScore.appendChild(highScoreTitle);
-    const highScoreNumber = document.createElement('p');
-    highScoreNumber.textContent = pastInitals + " - " + highScore;
-    displayHighScore.appendChild(highScoreNumber);
-    tryAgainEl.style.display = 'flex';
+    // const highScoreTitle = document.createElement('p');
+    // highScoreTitle.classList.add('.high-score-title')
+    // highScoreTitle.textContent = 'High Score';
+    // displayHighScore.appendChild(highScoreTitle);
+    // const highScoreNumber = document.createElement('p');
+    // highScoreNumber.textContent = pastInitals + " - " + highScore;
+    // displayHighScore.appendChild(highScoreNumber);
+    // tryAgainEl.style.display = 'flex';
 }
 
 tryAgainButton.addEventListener('click', () => {

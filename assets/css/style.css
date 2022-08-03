@@ -42,9 +42,9 @@ section {
     font-size: 35px;
 }
 
-p.\.high-score-title {
+h2.\.high-score-title {
     text-decoration: underline;
-    font-size: 60px;
+    text-align: center;
 }
 
 .try-again {
