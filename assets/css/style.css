@@ -48,7 +48,8 @@ p.\.high-score-title {
 
 .try-again {
     display: none;
-    padding: 100px 0 0 460px;
+    justify-content: center;
+    padding: 100px;
 }
 
 .starter-page {

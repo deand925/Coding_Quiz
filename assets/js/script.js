@@ -72,6 +72,8 @@ buttonStart.addEventListener('click', () => {
     displayScore.textContent = score;
     // hide starter page 
     startPage.style.display = 'none';
+    // hide try again page 
+    tryAgainEl.style.display = 'none';
      // hide try again button
     questPage.style.display = 'block';
     // set timer
@@ -177,5 +179,14 @@ tryAgainButton.addEventListener('click', () => {
     tryAgainEl.style.display = 'none';
     // display starter page 
     startPage.style.display = 'flex';
+    resetTimerScore();
 })
 
+function resetTimerScore() {
+    time = 90;
+    timer.textContent = time;
+    score = 0;
+    displayScore.textContent = score;
+    highScoreTitle.remove();
+    highScoreNumber.remove();
+}
