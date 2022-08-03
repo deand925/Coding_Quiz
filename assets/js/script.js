@@ -173,20 +173,6 @@ function checkHighScore() {
 }
 
 tryAgainButton.addEventListener('click', () => {
-    // hide the high score div
-    displayHighScore.style.display = 'none';
-    // hide try again button
-    tryAgainEl.style.display = 'none';
-    // display starter page 
-    startPage.style.display = 'flex';
-    resetTimerScore();
+    location.reload();
 })
 
-function resetTimerScore() {
-    time = 90;
-    timer.textContent = time;
-    score = 0;
-    displayScore.textContent = score;
-    highScoreTitle.remove();
-    highScoreNumber.remove();
-}
