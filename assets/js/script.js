@@ -72,7 +72,7 @@ buttonStart.addEventListener('click', () => {
     displayScore.textContent = score;
     // hide starter page 
     startPage.style.display = 'none';
-    // display questions page
+     // hide try again button
     questPage.style.display = 'block';
     // set timer
     timeInterval = setInterval(function () {
@@ -126,6 +126,7 @@ function checkAnswer(event) {
         globalIndex++;
         // check if all questions have been answered or if time has run out
         if (globalIndex === 10 || time === 0) {
+            globalIndex = 0;
             // display the high score div
             displayHighScore.style.display = 'block';
             // stop the time
@@ -166,7 +167,7 @@ function checkHighScore() {
     const highScoreNumber = document.createElement('p');
     highScoreNumber.textContent = pastInitals + " - " + highScore;
     displayHighScore.appendChild(highScoreNumber);
-    tryAgainEl.style.display = 'block';
+    tryAgainEl.style.display = 'flex';
 }
 
 tryAgainButton.addEventListener('click', () => {
@@ -175,6 +176,6 @@ tryAgainButton.addEventListener('click', () => {
     // hide try again button
     tryAgainEl.style.display = 'none';
     // display starter page 
-    startPage.style.display = 'block';
+    startPage.style.display = 'flex';
 })
 
