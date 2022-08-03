@@ -32,24 +32,24 @@ section {
 }
 
 .high-score {
-    height: 240px;
+    height: 360px;
     display: none;
     border: 5px solid;
     margin: 20px;
     border-radius: 12px;
     background-color: blue;
     color: white;
-    font-size: 60px;
+    font-size: 35px;
 }
 
 p.\.high-score-title {
     text-decoration: underline;
+    font-size: 60px;
 }
 
 .try-again {
     display: none;
     justify-content: center;
-    padding: 100px;
 }
 
 .starter-page {
