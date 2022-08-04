@@ -72,7 +72,7 @@ h1 {
 
 p {
     text-align: center;
-    padding: 20px;
+    margin: 20px;
 }
 
 .button ,.try-again-button {
@@ -116,4 +116,9 @@ p {
     margin: 10px auto;
     font-weight: bold;
     text-align: center;
+}
+
+p.\.high-score-list-el {
+    margin: 0;
+    padding: auto;
 }
