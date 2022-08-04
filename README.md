@@ -1,4 +1,4 @@
-# 04 Coding Quiz
+# 04 JavaScript Coding Quiz
 
 ## Description
 
@@ -6,11 +6,11 @@ Created an user application that generates generates a quiz. When the user answe
 
 ## Website URL 
 
-* [deployed link](https://deand925.github.io/Coding_Quiz/)
+* [deployed link](https://deand925.github.io/JavaScript_Coding_Quiz/)
 
 ## Github
 
-https://github.com/deand925/Coding_Quiz.git
+https://github.com/deand925/JavaScript_Coding_Quiz.git
 
 
 ## Images
